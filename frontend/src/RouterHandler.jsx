@@ -48,8 +48,8 @@ function RouterHandler() {
       <Route path="/form" element={ <Form />} />
       <Route path="/holdings" element={<Holdings />} />
       <Route path="/pavti/:idCode" element={<Pavti />} />
-      <Route path="/pavti" element={<ProtectedRoute><PavtiForm /></ProtectedRoute>} />
-      <Route path="/receipt/:uniquckId" element={<ProtectedRoute><Receipt /></ProtectedRoute>} />
+      <Route path="/pavti" element={<PavtiForm />} />
+      <Route path="/receipt/:uniquckId" element={<Receipt />} />
     </Routes>
   );
 }
