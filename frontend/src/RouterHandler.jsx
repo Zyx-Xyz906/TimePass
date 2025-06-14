@@ -46,7 +46,7 @@ function RouterHandler() {
       <Route path="/" element={<SecretToken />} />
 
       <Route path="/form" element={ <Form />} />
-      <Route path="/holdings" element={<ProtectedRoute><Holdings /></ProtectedRoute>} />
+      <Route path="/holdings" element={<Holdings />} />
       <Route path="/pavti/:idCode" element={<Pavti />} />
       <Route path="/pavti" element={<ProtectedRoute><PavtiForm /></ProtectedRoute>} />
       <Route path="/receipt/:uniquckId" element={<ProtectedRoute><Receipt /></ProtectedRoute>} />
