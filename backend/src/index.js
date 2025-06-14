@@ -14,7 +14,7 @@ const originWhitelist = [
 ];
 
 app.use(cors({
-  origin: originWhitelist,
+  origin: process.env.FRONTEND_URL,
   methods: ['GET','POST','PUT','DELETE'],
   credentials: true
 }));
