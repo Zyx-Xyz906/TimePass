@@ -171,7 +171,7 @@ function Pavti() {
           </div>
           {/*user info */}
           <p className="text-end mb-2" style={{ fontWeight: 500 }}>
-            <strong>Invoice no.</strong> {Math.floor(10000 + Math.random() * 90000)}
+            <strong>Invoice no.</strong> In##00{Math.floor(10000 + Math.random() * 90000)}
           </p>
           <div className="p-1" style={{ backgroundColor: '#e7e0d6', height: "2em" }} >
             <p style={{ marginLeft: '25px' }}>
