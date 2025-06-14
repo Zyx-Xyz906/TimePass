@@ -8,14 +8,17 @@ app.use(express.json());
 const MONGO_URL = process.env.MONGO_URL;
 const formRoute = require("./Routes/FormRoute");
 
+const originWhitelist = [
+  process.env.FRONTEND_URL,      // e.g. later https://your-frontend.onrender.com
+  'http://localhost:3000'        // your React dev server
+];
+
 app.use(cors({
-    origin : [
-        // "http://localhost:3000"
-        process.env.FRONTEND_URL
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-}))
+  origin: originWhitelist,
+  methods: ['GET','POST','PUT','DELETE'],
+  credentials: true
+}));
+
 
 app.use('/api/forms', formRoute);
 
