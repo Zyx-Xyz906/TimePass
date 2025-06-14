@@ -17,7 +17,7 @@ function Holdings() {
     useEffect(() => {
     const fetchHoldings = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/forms/getForm');
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/forms/getForm`);
         setStocks(res.data);
       } catch (err) {
         console.error('Error fetching holdings:', err);
@@ -82,7 +82,7 @@ function Holdings() {
 
   const handleDelete = async (uniquckId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/forms/deleteForm/${uniquckId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/forms/deleteForm/${uniquckId}`);
       setStocks(prev => prev.filter(s => s.uniquckId !== uniquckId));
     } catch (error) {
       console.error("Error deleting stock:", error.response?.data || error.message);
@@ -92,7 +92,7 @@ function Holdings() {
   const handleDeleteAll = async () => {
     if (!window.confirm("Are you sure you want to delete all entries?")) return;
     try {
-      await axios.delete("http://localhost:8000/api/forms/deleteAll");
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/forms/deleteAll`);
       setStocks([]);
     } catch (err) {
       console.error("Error deleting all:", err.response?.data || err.message);

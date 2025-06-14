@@ -31,7 +31,7 @@ function Form() {
     const { clientName, stockName, idCode, quantity, buyPrice, sellPrice, tradeDate, brokerage, mode } = formData;
 
     try {
-      const res = await axios.post("http://localhost:8000/api/forms/createForm", {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/forms/createForm`, {
         clientName,
         stockName,
         idCode,

@@ -29,7 +29,7 @@ function PavtiForm() {
       e.preventDefault();
       const {idCode,address, margin, mobileNumber} = PavtiFormData;
       try{
-        const res = await axios.put(`http://localhost:8000/api/forms/updateForm/${idCode}`, {
+        const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/forms/updateForm/${idCode}`, {
           idCode,
           address,
           margin: Number(margin),
