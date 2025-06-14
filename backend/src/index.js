@@ -8,15 +8,18 @@ app.use(express.json());
 const MONGO_URL = process.env.MONGO_URL;
 const formRoute = require("./Routes/FormRoute");
 
-const originWhitelist = [
-  process.env.FRONTEND_URL,      // e.g. later https://your-frontend.onrender.com
-  'http://localhost:3000'        // your React dev server
-];
+// const originWhitelist = [
+//   process.env.FRONTEND_URL,      // e.g. later https://your-frontend.onrender.com
+//   'http://localhost:3000'        // your React dev server
+// ];
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  methods: ['GET','POST','PUT','DELETE'],
-  credentials: true
+  origin: [
+    process.env.FRONTEND_URL, // use https://your-frontend.onrender.com
+    "https://vipul-project.onrender.com/" // just in case
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
 }));
 
 
