@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "dependencies": {
     "body-parser": "^2.2.0",
     "corps": "^0.1.0",
