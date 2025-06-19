@@ -13,7 +13,7 @@ function TredBuyReceipt() {
   const [receiptData, setReceiptData] = useState(null);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/formTwo/getFormTow`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/formTwo/getFormTwo`)
       .then(res => setReceiptData(res.data))
       .catch(err => console.error(err));
   }, []);
