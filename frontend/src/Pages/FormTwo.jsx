@@ -27,7 +27,7 @@ function FormTwo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { clientName, stockName, idCode, quantity, buyPrice, date, mode } = formData;
+    const { clientName, stockName, idCode, quantity, buyPrice, tradeDate, mode } = formData;
 
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/formTwo/createFormTwo`, {
