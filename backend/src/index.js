@@ -21,7 +21,7 @@ app.use(cors({
 
 app.use('/api/forms', formRoute);
 
-app.use('/api/formSecond', formTwoRoute);
+app.use('/api/formTwo', formTwoRoute);
 
 mongoose.connect(MONGO_URL)
   .then(() => {
