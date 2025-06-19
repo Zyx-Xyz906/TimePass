@@ -9,6 +9,7 @@ import PavtiForm from './Pages/PavtiForm';
 import SecretToken from './Pages/SecretToken';
 import Form from './Pages/Form';
 import ProtectedRoute from './ProtectedRoute';
+import FormTwo from './Pages/FormTwo';
 
 function RouterHandler() {
   const navigate = useNavigate();
@@ -44,8 +45,8 @@ function RouterHandler() {
     <Routes>
       
       <Route path="/" element={<SecretToken />} />
-
       <Route path="/form" element={ <Form />} />
+      <Route path="/formTwo" element={ <FormTwo />} />
       <Route path="/holdings" element={<Holdings />} />
       <Route path="/pavti/:idCode" element={<Pavti />} />
       <Route path="/pavti" element={<PavtiForm />} />

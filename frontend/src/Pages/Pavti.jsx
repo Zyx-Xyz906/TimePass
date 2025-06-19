@@ -69,75 +69,72 @@ function Pavti() {
   };
 
 
-  const handleDownload = async () => {
-    const input = invoiceRef.current;
-    if (!input) return;
+const handleDownload = async () => {
+  const input = invoiceRef.current;
+  if (!input) return;
 
-    // Clone setup (optional - if you want to isolate layout issues)
-    const clone = input.cloneNode(true);
-    clone.style.width = '794px'; // A4 width in px at 96 DPI
-    clone.style.padding = '20px';
-    clone.style.backgroundColor = 'white';
-    clone.style.position = 'absolute';
-    clone.style.top = '-9999px';
-    clone.style.left = '0';
+  // Clone the original node for layout safety
+  const clone = input.cloneNode(true);
+  clone.style.width = '794px'; // A4 width in px at 96 DPI
+  clone.style.padding = '20px';
+  clone.style.backgroundColor = 'white';
+  clone.style.position = 'absolute';
+  clone.style.top = '-9999px';
+  clone.style.left = '0';
+  clone.style.zIndex = '-1';
 
-    const totalBlock = clone.querySelector('div.p-3');
-    if (totalBlock) {
-      totalBlock.classList.remove('flex-column', 'flex-sm-row');
-      totalBlock.style.display = 'flex';
-      totalBlock.style.flexDirection = 'row';
-      totalBlock.style.justifyContent = 'space-between';
-      totalBlock.style.alignItems = 'center';
-      totalBlock.style.height = '2em'; // match other bars
-      totalBlock.style.padding = '0 20px';
-      totalBlock.style.gap = '20px';
+  const totalBlock = clone.querySelector('div.p-3');
+  if (totalBlock) {
+    totalBlock.classList.remove('flex-column', 'flex-sm-row');
+    totalBlock.style.display = 'flex';
+    totalBlock.style.flexDirection = 'row';
+    totalBlock.style.justifyContent = 'space-between';
+    totalBlock.style.alignItems = 'center';
+    totalBlock.style.height = '2em';
+    totalBlock.style.padding = '0 20px';
+    totalBlock.style.gap = '20px';
 
-      const allChildren = totalBlock.children;
-      for (let i = 0; i < allChildren.length; i++) {
-        allChildren[i].style.margin = '0';
-        allChildren[i].style.whiteSpace = 'nowrap';
-        allChildren[i].style.textAlign = 'center';
-        allChildren[i].style.flex = '1';
-      }
+    const allChildren = totalBlock.children;
+    for (let i = 0; i < allChildren.length; i++) {
+      allChildren[i].style.margin = '0';
+      allChildren[i].style.whiteSpace = 'nowrap';
+      allChildren[i].style.textAlign = 'center';
+      allChildren[i].style.flex = '1';
     }
+  }
 
-    document.body.appendChild(clone);
+  document.body.appendChild(clone);
 
-    // Wait for clone to render completely
-    await new Promise(resolve => setTimeout(resolve, 100));
+  await new Promise(resolve => setTimeout(resolve, 200));
 
-    // Create canvas with high DPI scale
-    const canvas = await html2canvas(clone, {
-      scale: 3, // Higher scale = sharper image
-      useCORS: true,
-    });
+  const canvas = await html2canvas(clone, { scale: 2, useCORS: true });
 
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF('p', 'pt', 'a4');
+  const imgData = canvas.toDataURL('image/png');
+  const pdf = new jsPDF('p', 'pt', 'a4');
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const pageWidth = pdf.internal.pageSize.getWidth();
 
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
+  const imgWidth = pageWidth;
+  const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    // Calculate ratio to fit perfectly
-    const imgProps = {
-      width: canvas.width,
-      height: canvas.height
-    };
+  let heightLeft = imgHeight;
+  let position = 0;
 
-    const ratio = Math.min(pageWidth / imgProps.width, pageHeight / imgProps.height);
+  // First page
+  pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+  heightLeft -= pageHeight;
 
-    const imgWidth = imgProps.width * ratio;
-    const imgHeight = imgProps.height * ratio;
+  while (heightLeft > 0) {
+    position = heightLeft - imgHeight;
+    pdf.addPage();
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+  }
 
-    const x = (pageWidth - imgWidth) / 2;
-    const y = 20; // Top margin
+  pdf.save('invoice.pdf');
+  document.body.removeChild(clone);
+};
 
-    pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
-    pdf.save('invoice.pdf');
-
-    document.body.removeChild(clone);
-  };
 
 
   return (

@@ -7,7 +7,7 @@ const cors = require("cors");
 app.use(express.json());
 const MONGO_URL = process.env.MONGO_URL;
 const formRoute = require("./Routes/FormRoute");
-
+const formTwoRoute = require("./Routes/FormTwoRoute")
 const allowedOrigins = [
  "https://vipul-project.onrender.com",      // e.g. later https://your-frontend.onrender.com  // your React dev server
 ];
@@ -20,6 +20,8 @@ app.use(cors({
 
 
 app.use('/api/forms', formRoute);
+
+app.use('/api/formSecond', formTwoRoute);
 
 mongoose.connect(MONGO_URL)
   .then(() => {

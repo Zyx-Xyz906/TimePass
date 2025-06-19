@@ -8,21 +8,15 @@ import NavBar from '../Components/NavBar';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-function Receipt() {
+function TredBuyReceipt() {
   const { uniquckId } = useParams();
   const [receiptData, setReceiptData] = useState(null);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/forms/getForm/${uniquckId}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/formTwo/getFormTow`)
       .then(res => setReceiptData(res.data))
       .catch(err => console.error(err));
-  }, [uniquckId]);
-
-  // Intraday brokerage at 0.01% of turnover (buy+sell)*quantity
-  const calculateBrokerage = ({ buyPrice, sellPrice, quantity }) => {
-    const turnover = (buyPrice + sellPrice) * quantity;
-    return Number((turnover * 0.0001).toFixed(2));
-  };
+  }, []);
 
 
   const handleDownloadPDF = async () => {
@@ -75,18 +69,6 @@ function Receipt() {
     );
   }
 
-  const brokerage = calculateBrokerage(receiptData);
-  // const netAmount = (receiptData.sellPrice * receiptData.quantity) - (receiptData.buyPrice * receiptData.quantity) - brokerage;
-  //Calculate netAmount based on mode
-  let netAmount = 0;
-  const { buyPrice, sellPrice, quantity, mode } = receiptData;
-  if (mode === 'buy') {
-    netAmount = ((sellPrice * quantity) - (buyPrice * quantity)) - brokerage;
-  } else if (mode === 'sell') {
-    netAmount = (buyPrice * quantity) - (sellPrice * quantity) - brokerage;
-  }
-
-
   return (
     <>
       <NavBar />
@@ -95,9 +77,9 @@ function Receipt() {
           <div className="card shadow-lg mx-auto" style={{ maxWidth: '600px', borderTop: '6px solid rgba(0, 123, 255, 0.76)', borderRadius: '16px' }}>
             <div className="card-body reciepit-card-body-tabel-padding p-4">
               <div className="text-center mb-4">
-                <h1 className="h4">Trade Exit Receipt</h1>
+                <h1 className="h4">Trade Buy Receipt</h1>
                 <small className="text-muted">
-                  Invoice No: <strong>{receiptData.uniquckId}</strong> &nbsp; | &nbsp; Date: <strong>{new Date(receiptData.tradeDate).toLocaleDateString('en-GB')}</strong>
+                  Invoice No: &nbsp; | &nbsp; Date: <strong>{new Date(receiptData.tradeDate).toLocaleDateString('en-GB')}</strong>
                 </small>
               </div>
 
@@ -127,36 +109,11 @@ function Receipt() {
                     <td style={labelStyle}>Buy Price:</td>
                     <td style={valueStyle}>₹{Number(receiptData.buyPrice).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
                   </tr>
-                  <tr>
-                    <td style={labelStyle}>Sell Price:</td>
-                    <td style={valueStyle}>₹{Number(receiptData.sellPrice).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
-                  </tr>
-                  <tr>
-                    <td style={labelStyle}>Total Buying:</td>
-                    <td style={valueStyle}>₹{(receiptData.buyPrice * receiptData.quantity).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
-                  </tr>
-                  <tr>
-                    <td style={labelStyle}>Total Selling:</td>
-                    <td style={valueStyle}>₹{(receiptData.sellPrice * receiptData.quantity).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
-                  </tr>
-                  <tr>
-                    <td style={labelStyle}>Brokerage (0.01%):</td>
-                    <td style={valueStyle}>₹{brokerage.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
-                  </tr>
-                  <tr className="border-top border-primary" style={{ borderTopWidth: 2 }}>
-                    <td style={{ ...labelStyle, fontWeight: 700, color: '#212529' }}>
-                      Net Amount ({netAmount >= 0 ? 'Profit' : 'Loss'}):
-                    </td>
-                    <td style={{
-                      ...valueStyle,
-                      fontWeight: 700,
-                      color: netAmount >= 0 ? '#198754' : '#dc3545'
-                    }}>
-                      ₹{Math.abs(netAmount).toLocaleString('en-IN', { minimumFractionDigits: 2 })}
-                    </td>
-                  </tr>
                 </tbody>
               </table>
+              <div className="text-center mt-4 fw-semibold text-primary">
+                Including 0.02% Brokerage Charge
+              </div>
 
               <div className="text-center mt-4 fw-semibold text-primary">
                 ✅ Thank you for trading with us!
@@ -190,5 +147,5 @@ const valueStyle = {
   padding: '4px 8px',
 };
 
-export default Receipt;
+export default TredBuyReceipt;
 

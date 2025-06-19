@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,11 +15,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -91,6 +93,9 @@ function NavBar() {
              <MenuItem component={Link} to="/form" onClick={handleCloseNavMenu}>
                 <Typography sx={{ textAlign: 'center' }}>Home</Typography>
               </MenuItem>
+              <MenuItem component={Link} to="/formTwo" onClick={handleCloseNavMenu}>
+                <Typography sx={{ textAlign: 'center' }}>Tred buy receipt</Typography>
+              </MenuItem>
               <MenuItem component={Link} to="/holdings" onClick={handleCloseNavMenu}>
                 <Typography sx={{ textAlign: 'center' }}>Holdings</Typography>
               </MenuItem>
@@ -121,6 +126,9 @@ function NavBar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button component={Link} to="/form" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
               Home
+            </Button>
+            <Button component={Link} to="/formTwo" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+              Tred buy receipt
             </Button>
             <Button component={Link} to="/holdings" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
               Holdings
