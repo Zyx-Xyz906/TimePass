@@ -10,7 +10,7 @@ import SecretToken from './Pages/SecretToken';
 import Form from './Pages/Form';
 import ProtectedRoute from './ProtectedRoute';
 import FormTwo from './Pages/FormTwo';
-
+import TredBuyReceipt from './Pages/TredBuyReceipt'
 function RouterHandler() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -47,6 +47,7 @@ function RouterHandler() {
       <Route path="/" element={<SecretToken />} />
       <Route path="/form" element={ <Form />} />
       <Route path="/formTwo" element={ <FormTwo />} />
+      <Route path="/tredBuyReceipt" element={<TredBuyReceipt />} />
       <Route path="/holdings" element={<Holdings />} />
       <Route path="/pavti/:idCode" element={<Pavti />} />
       <Route path="/pavti" element={<PavtiForm />} />

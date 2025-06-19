@@ -249,7 +249,7 @@ const handleDownload = async () => {
             <h5 className="mb-2 mb-sm-0 fw-bold">TOTAL</h5>
             <div className="text-end">
               {/* <p className="mb-1 text-success" style={{ fontWeight: 600 }}>Seven thousand six hundred eighty-five</p> */}
-              <p className="mb-0" style={{ color: totalProfit >= 0 ? 'black' : 'red', fontWeight: 'bold' }}>
+              <p className="mb-0" style={{ color: totalProfit >= 0 ? 'green' : 'red', fontWeight: 'bold' }}>
                 &#8377; {totalProfit.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
               </p>
             </div>

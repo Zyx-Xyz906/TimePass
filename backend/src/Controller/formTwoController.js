@@ -12,9 +12,13 @@ const createFormTwo  = async(req ,res) =>{
 
 const getFormTwo  = async(req, res) =>{
     try{
-        const form = await FormTwoModel.find({});
-        await FormTwoModel.deleteMany({});
-        return res.json(form);
+        const form = await FormTwoModel.findOne({});
+        if(form) {
+            await FormTwoModel.deleteOne({ _id: form._id });
+            return res.json(form);
+        } else {
+            return res.json(null);
+        }
     }catch(err){
         res.status(500).json({ message : "server issue", success : false });
     }

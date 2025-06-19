@@ -40,7 +40,9 @@ function FormTwo() {
         mode
       });
 
-      if (res) {
+      console.log(res);
+
+      if (res.data) {
         navigate(`/TredBuyReceipt`);
       }
 
@@ -127,7 +129,7 @@ function FormTwo() {
             type="date"
             id="tradeDate"
             name="tradeDate"
-            value={formData.tradeDate}
+            value={formData.date}
             onChange={handleChanges}
             className="form-control text-muted"
           />
