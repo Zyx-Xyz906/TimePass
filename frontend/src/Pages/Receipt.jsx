@@ -97,7 +97,7 @@ function Receipt() {
               <div className="text-center mb-4">
                 <h1 className="h4">Trade Exit Receipt</h1>
                 <small className="text-muted">
-                  Invoice No: <strong>{receiptData.uniquckId}</strong> &nbsp; | &nbsp; Date: <strong>{new Date(receiptData.tradeDate).toLocaleDateString('en-GB')}</strong>
+                  Invoice No: <strong>Invoice no.</strong> In##00{Math.floor(10000 + Math.random() * 90000)} &nbsp; | &nbsp; Date: <strong>{new Date(receiptData.tradeDate).toLocaleDateString('en-GB')}</strong>
                 </small>
               </div>
 
