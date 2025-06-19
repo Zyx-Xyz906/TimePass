@@ -14,7 +14,7 @@ function FormTwo() {
     quantity: "", 
     buyPrice: "",
     mode:"",
-    date : "",
+    tradeDate : "",
   });
 
   const handleChanges = (event) => {
@@ -36,7 +36,7 @@ function FormTwo() {
         idCode,
         quantity: Number(quantity),
         buyPrice: Number(buyPrice),
-        date,
+        tradeDate,
         mode
       });
 
@@ -129,7 +129,7 @@ function FormTwo() {
             type="date"
             id="tradeDate"
             name="tradeDate"
-            value={formData.date}
+            value={formData.tradeDate}
             onChange={handleChanges}
             className="form-control text-muted"
           />

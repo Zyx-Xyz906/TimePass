@@ -7,7 +7,11 @@ const formTwoSchema = new mongoose.Schema({
     quantity : {type : Number},
     mode : {type : String},
     buyPrice : {type : Number},
-    date : {type : Date}
+    tradeDate: {
+    type: String,
+    default: () => new Date().toISOString().split('T')[0],
+    required: true,
+  },
 })
 
 const FormTwoModel = mongoose.model("FormTwoModel", formTwoSchema);
