@@ -91,7 +91,7 @@ function TredBuyReceipt() {
                 <tbody>
                   <tr className="border-top border-primary" style={{ borderTopWidth: 2 }}>
                     <td style={labelStyle}>Client Name:</td>
-                    <td style={valueStyle}>{receiptData.clientName}</td>
+                    <td style={valueStyle}>{receiptData.client}</td>
                   </tr>
                   <tr>
                     <td style={labelStyle}>Customer ID:</td>
