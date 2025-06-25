@@ -8,7 +8,7 @@ import Option from '@mui/joy/Option';
 function FormTwo() {
   const navigate = useNavigate();
   const [formTwoData, setFormTwoData] = useState({
-    clientName: "",
+    client: "",
     stockName: "", 
     idCode: "",
     quantity: "", 
@@ -19,7 +19,7 @@ function FormTwo() {
 
   const handleChanges = (event) => {
     const { name, value } = event.target;
-    
+
     setFormTwoData(data => ({
       ...data,
       [name]: value,
@@ -28,11 +28,11 @@ function FormTwo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { clientName, stockName, idCode, quantity, buyPrice, tradeDate, mode } = formTwoData;
-
+    const { client, stockName, idCode, quantity, buyPrice, tradeDate, mode } = formTwoData;
+    console.log(formTwoData)
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/formTwo/createFormTwo`, {
-        clientName,
+        client,
         stockName,
         idCode,
         quantity: Number(quantity),
@@ -60,12 +60,12 @@ function FormTwo() {
 
       <form className='row' onSubmit={handleSubmit}>
         <div className="col-md-6 mb-3">
-          <label htmlFor="clientName" className="form-label text-muted">Client Name</label>
+          <label htmlFor="client" className="form-label text-muted">Client Name</label>
           <input
             type="text"
-            id="clientName"
-            name="clientName"
-            value={formTwoData.clientName}
+            id="client"
+            name="client"
+            value={formTwoData.client}
             onChange={handleChanges}
             className="form-control text-muted"
             placeholder="Enter your client name"
