@@ -63,9 +63,13 @@ function TredBuyReceipt() {
 
   if (!receiptData) {
     return (
+      <>
+      <NavBar />
+      
       <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
         <div className="text-muted">Loading receipt...</div>
       </div>
+      </>
     );
   }
 

@@ -7,7 +7,7 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 function FormTwo() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [formTwoData, setFormTwoData] = useState({
     clientName: "",
     stockName: "", 
     idCode: "",
@@ -19,7 +19,8 @@ function FormTwo() {
 
   const handleChanges = (event) => {
     const { name, value } = event.target;
-    setFormData(data => ({
+    
+    setFormTwoData(data => ({
       ...data,
       [name]: value,
     }));
@@ -27,7 +28,7 @@ function FormTwo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { clientName, stockName, idCode, quantity, buyPrice, tradeDate, mode } = formData;
+    const { clientName, stockName, idCode, quantity, buyPrice, tradeDate, mode } = formTwoData;
 
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/formTwo/createFormTwo`, {
@@ -64,7 +65,7 @@ function FormTwo() {
             type="text"
             id="clientName"
             name="clientName"
-            value={formData.clientName}
+            value={formTwoData.clientName}
             onChange={handleChanges}
             className="form-control text-muted"
             placeholder="Enter your client name"
@@ -77,7 +78,7 @@ function FormTwo() {
             type="text"
             id="stockName"
             name="stockName"
-            value={formData.stockName}
+            value={formTwoData.stockName}
             onChange={handleChanges}
             className="form-control text-muted"
             placeholder="Enter your stock name"
@@ -90,7 +91,7 @@ function FormTwo() {
             type="text"
             id="idCode"
             name="idCode"
-            value={formData.idCode}
+            value={formTwoData.idCode}
             onChange={handleChanges}
             className="form-control text-muted"
             placeholder="Enter user ID code"
@@ -103,7 +104,7 @@ function FormTwo() {
             type="number"
             id="quantity"
             name="quantity"
-            value={formData.quantity}
+            value={formTwoData.quantity}
             onChange={handleChanges}
             className="form-control text-muted"
             placeholder="Enter your stock quantity"
@@ -116,7 +117,7 @@ function FormTwo() {
             type="number"
             id="buyPrice"
             name="buyPrice"
-            value={formData.buyPrice}
+            value={formTwoData.buyPrice}
             onChange={handleChanges}
             className="form-control text-muted"
             placeholder="Enter buying price"
@@ -129,7 +130,7 @@ function FormTwo() {
             type="date"
             id="tradeDate"
             name="tradeDate"
-            value={formData.tradeDate}
+            value={formTwoData.tradeDate}
             onChange={handleChanges}
             className="form-control text-muted"
           />
@@ -141,7 +142,7 @@ function FormTwo() {
             type="text"
             id="mode"
             name="mode"
-            value={formData.mode}
+            value={formTwoData.mode}
             onChange={handleChanges}
             className="form-control text-muted"
             placeholder="Enter your mode eg. 'buy', 'sell' "
