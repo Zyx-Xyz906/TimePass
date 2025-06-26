@@ -90,16 +90,17 @@ const handleDownload = async () => {
     totalBlock.style.flexDirection = 'row';
     totalBlock.style.justifyContent = 'space-between';
     totalBlock.style.alignItems = 'center';
-    totalBlock.style.height = '2em';
+    totalBlock.style.height = 'auto'; // <-- Fix: height auto
     totalBlock.style.padding = '0 20px';
-    totalBlock.style.gap = '20px';
+    totalBlock.style.gap = '0';
 
     const allChildren = totalBlock.children;
     for (let i = 0; i < allChildren.length; i++) {
       allChildren[i].style.margin = '0';
       allChildren[i].style.whiteSpace = 'nowrap';
-      allChildren[i].style.textAlign = 'center';
-      allChildren[i].style.flex = '1';
+      allChildren[i].style.textAlign = i === 0 ? 'left' : 'right';
+      allChildren[i].style.flex = 'unset';
+      allChildren[i].style.width = 'auto';
     }
   }
 
@@ -167,11 +168,11 @@ const handleDownload = async () => {
             </div>
           </div>
           {/*user info */}
-          <p className="text-end mb-2" style={{ fontWeight: 500 }}>
-            <strong>Invoice no.</strong> In##00{Math.floor(10000 + Math.random() * 90000)}
+          <p className="text-end mb-2" >
+            <strong>Invoice no. :</strong> In##00{Math.floor(10000 + Math.random() * 90000)}
           </p>
           <div className="p-1" style={{ backgroundColor: '#e7e0d6', height: "2em" }} >
-            <p style={{ marginLeft: '25px' }}>
+            <p>
               <strong>Date :</strong> {new Date().toLocaleDateString('en-GB')}
             </p>
           </div>
@@ -182,7 +183,7 @@ const handleDownload = async () => {
                 <p className="mb-1"><strong>ID CODE :</strong> {pavtiData[0].idCode}</p>
                 <p className="mb-0"><strong>NAME :</strong> {pavtiData[0].clientName}</p>
                 <p className="mb-0"><strong>PHONE :</strong> {maskMobile(pavtiData[0].mobileNumber)}</p>
-                <p className="mb-0"><strong>Address :</strong> {pavtiData[0].address}</p>
+                <p className="mb-0"><strong>ADDRESS :</strong> {pavtiData[0].address}</p>
               </>
             )}
           </div>
@@ -198,7 +199,7 @@ const handleDownload = async () => {
                   <th className="text-center">BUY</th>
                   <th className="text-center">SELL</th>
                   <th className="text-center">QTY</th>
-                  <th className="text-center">BRokerage</th>
+                  <th className="text-center">BROKERAGE</th>
                   <th className="text-center">P / L</th>
                 </tr>
               </thead>
@@ -230,13 +231,13 @@ const handleDownload = async () => {
           </div>
 
           <div className="p-1" style={{ backgroundColor: '#e7e0d6', height: "2em" }} >
-            <p style={{ marginLeft: '25px' }}>
+            <p>
               <strong>Margin :</strong> &#8377; {userInfo?.margin || '0.00'}
             </p>
           </div>
 
           <div className="mb-3 row">
-            <p className="fw-bold col-6">Term & Condition/Note Detailed bill that records all transactions Done by broker on behalf of His client during a trading day</p>
+            <p className="fw-bold col-6">Term & Condition / Note Detailed bill that records all transactions Done by broker on behalf of His client during a trading day</p>
             <img
               src={require('../Pages/Signature-img.jpg')}
               alt="logo"
@@ -246,7 +247,7 @@ const handleDownload = async () => {
           </div>
 
           <div className="p-3 d-flex flex-column flex-sm-row justify-content-between align-items-center" style={{ backgroundColor: '#e7e0d6' }}>
-            <h5 className="mb-2 mb-sm-0 fw-bold">TOTAL</h5>
+            <h6 className="fw-bold" style={{ fontSize : "20px" }}>TOTAL</h6>
             <div className="text-end">
               {/* <p className="mb-1 text-success" style={{ fontWeight: 600 }}>Seven thousand six hundred eighty-five</p> */}
               <p className="mb-0" style={{ color: totalProfit >= 0 ? 'green' : 'red', fontWeight: 'bold' }}>

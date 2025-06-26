@@ -11,6 +11,7 @@ import Form from './Pages/Form';
 import ProtectedRoute from './ProtectedRoute';
 import FormTwo from './Pages/FormTwo';
 import TredBuyReceipt from './Pages/TredBuyReceipt'
+import AverageCalce from './Pages/AverageCalce';
 function RouterHandler() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -52,6 +53,7 @@ function RouterHandler() {
       <Route path="/pavti/:idCode" element={<Pavti />} />
       <Route path="/pavti" element={<PavtiForm />} />
       <Route path="/receipt/:uniquckId" element={<Receipt />} />
+      <Route path="/averageCalce" element={<AverageCalce />} />
     </Routes>
   );
 }

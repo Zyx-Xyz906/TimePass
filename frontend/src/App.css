@@ -268,3 +268,40 @@
 .receipt-btn:hover {
   background: #e7f1ff;         /* light blue hover */
 }
+
+
+
+
+
+
+
+
+
+
+
+/* ...existing code... */
+.average-entries-scroll {
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+}
+.scroll-blur-top,
+.scroll-blur-bottom {
+  position: sticky;
+  left: 0;
+  right: 0;
+  height: 18px;
+  pointer-events: none;
+  z-index: 2;
+}
+.scroll-blur-top {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(200,200,200,0.25), rgba(200,200,200,0));
+}
+.scroll-blur-bottom {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(200,200,200,0.25), rgba(200,200,200,0));
+}

@@ -102,6 +102,9 @@ function NavBar() {
               <MenuItem component={Link} to="/pavti" onClick={handleCloseNavMenu}>
                 <Typography sx={{ textAlign: 'center' }}>Pavti</Typography>
               </MenuItem>
+              <MenuItem component={Link} to="/averageCalce" onClick={handleCloseNavMenu}>
+                <Typography sx={{ textAlign: 'center' }}>Average Calce</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -133,8 +136,8 @@ function NavBar() {
             <Button component={Link} to="/holdings" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
               Holdings
             </Button>
-            <Button component={Link} to="/pavti" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
-              Pavti
+            <Button component={Link} to="/averageCalce" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+              Average Calce
             </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
