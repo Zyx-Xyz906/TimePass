@@ -9,7 +9,8 @@ const MONGO_URL = process.env.MONGO_URL;
 const formRoute = require("./Routes/FormRoute");
 const formTwoRoute = require("./Routes/FormTwoRoute")
 const allowedOrigins = [
- "https://vipul-project.onrender.com",      // e.g. later https://your-frontend.onrender.com  // your React dev server
+ "https://vipul-project.onrender.com",
+//  "http://localhost:3000"      
 ];
 
 app.use(cors({
