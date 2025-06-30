@@ -136,6 +136,9 @@ function NavBar() {
             <Button component={Link} to="/holdings" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
               Holdings
             </Button>
+             <Button component={Link} to="/pavti" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+              Pavti
+            </Button>
             <Button component={Link} to="/averageCalce" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
               Average Calce
             </Button>

@@ -20,8 +20,8 @@ function Pavti() {
         setPavtiData(res.data);
 
         if (res.data.length) {
-          const { clientName, address, margin, mobileNumber } = res.data[0];
-          setUserInfo({ clientName, address, margin, mobileNumber });
+          const { clientName, address, margin, mobileNumber, orgnization } = res.data[0];
+          setUserInfo({ clientName, address, margin, mobileNumber, orgnization });
 
           let grossProfit = 0;
           let grossLoss = 0;
@@ -161,7 +161,7 @@ const handleDownload = async () => {
                   fontWeight: 50,
                 }}
               >
-                TRADE ORGNIZATION
+                {pavtiData[0]?.orgnization || "TRADE ORGANIZATION"}
 
               </div>
 

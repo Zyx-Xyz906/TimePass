@@ -9,9 +9,11 @@ const MONGO_URL = process.env.MONGO_URL;
 const formRoute = require("./Routes/FormRoute");
 const formTwoRoute = require("./Routes/FormTwoRoute")
 const allowedOrigins = [
- "https://vipul-project.onrender.com",
-//  "http://localhost:3000"      
+// "https://vipul-project.onrender.com",
+ "http://localhost:3000"                                    
 ];
+const { FormModel }  =  require("./Model/FormModel")
+
 
 app.use(cors({
   origin: allowedOrigins,
@@ -20,13 +22,21 @@ app.use(cors({
 }));
 
 
+
 app.use('/api/forms', formRoute);
 
 app.use('/api/formTwo', formTwoRoute);
 
 mongoose.connect(MONGO_URL)
-  .then(() => {
+  .then(async () => {
     console.log("mongoDB is Connect");
+
+    // Run this once after DB connects
+    await FormModel.updateMany(
+      { orgnization: { $exists: false } },
+      { $set: { orgnization: "VIPUL ORGANIZATION" } },
+      console.log("updated")
+    );
     app.listen(PORT, () => {
       console.log(`Server is Listen on ${PORT}`);
     });

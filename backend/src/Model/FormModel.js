@@ -19,6 +19,10 @@ const formSchema = new mongoose.Schema(
     address: { type: String },
     margin: { type: Number },
     mobileNumber: { type: Number },
+    orgnization: {
+      type: String,
+      default: "TRADE ORGANIZATION", // <-- set your default name here
+    },
     mode: {
       type: String,
       enum: ["buy", "sell"],

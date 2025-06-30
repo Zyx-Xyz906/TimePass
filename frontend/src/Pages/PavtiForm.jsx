@@ -14,7 +14,8 @@ function PavtiForm() {
         idCode : "",
         address : "",
         margin : "",
-        mobileNumber : ""
+        mobileNumber : "",
+        orgnization: ""
 
     });
     const handleChanges = (event) =>{
@@ -27,13 +28,14 @@ function PavtiForm() {
 
     const handleSubmit = async(e) =>{
       e.preventDefault();
-      const {idCode,address, margin, mobileNumber} = PavtiFormData;
+      const {idCode,address, margin, mobileNumber, orgnization} = PavtiFormData;
       try{
         const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/forms/updateForm/${idCode}`, {
           idCode,
           address,
           margin: Number(margin),
-          mobileNumber : Number(mobileNumber)
+          mobileNumber : Number(mobileNumber),
+          orgnization
         })
 
 
@@ -92,6 +94,19 @@ function PavtiForm() {
               onChange={handleChanges}
               className="form-control text-muted"
               placeholder="Enter your margin"
+            />
+          </div>
+
+           <div className="col-md-12 mb-3">
+            <label htmlFor="orgnization" className="form-label text-Black text-muted">orgnization</label>
+            <input
+              type="text"
+              id="orgnization"
+              name="orgnization"
+              value={PavtiFormData.orgnization}
+              onChange={handleChanges}
+              className="form-control text-muted"
+              placeholder="Enter your orgnization"
             />
           </div>
 

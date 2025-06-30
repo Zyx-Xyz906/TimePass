@@ -47,7 +47,7 @@ exports.getFormsByUniquckId = async (req, res) =>{
 // PUT route to update all forms with same idCode
 exports.updateForm = async (req, res) => {
   const { idCode } = req.params;
-  const { address, margin, mobileNumber } = req.body;
+  const { address, margin, mobileNumber, orgnization } = req.body;
 
   console.log("Received ID:", idCode);
   console.log("Body:", req.body);
@@ -56,7 +56,7 @@ exports.updateForm = async (req, res) => {
     const result = await FormModel.updateMany(
       { idCode },
       {
-        $set: { address, margin, mobileNumber },
+        $set: { address, margin, mobileNumber, orgnization },
       }
     );
 
