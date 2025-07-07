@@ -30,7 +30,6 @@ function SecretToken() {
       localStorage.setItem("loginTime", Date.now().toString());
       navigate("/form");
     } else {
-     
     }
   };
 

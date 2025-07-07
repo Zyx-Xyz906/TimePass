@@ -154,14 +154,14 @@ const handleDownload = async () => {
               />
               <div
                 style={{
-                  fontSize: '1.1em',
-                  fontFamily: 'Impact, fantasy',
+                  fontSize: '1.3em',
+                  // fontFamily: 'Impact, fantasy',
                   textAlign: 'center',
                   letterSpacing: 2,
-                  fontWeight: 50,
+                  fontWeight: 500,
                 }}
               >
-                {pavtiData[0]?.orgnization || "TRADE ORGANIZATION"}
+                <b>{pavtiData[0]?.orgnization || "TRADE ORGANIZATION"}</b>
 
               </div>
 
